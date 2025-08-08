@@ -4,9 +4,12 @@ import Transfer from "./transfer";
 import { insertStudent, Student } from "../handlers/addStudent";
 
 function getMaxDate() {
-  const date = new Date();
-  const year = date.getFullYear() - 15;
-  return `${year}-12-31`;
+  const today = new Date();
+  const year = today.getFullYear() - 15;
+  const month = (today.getMonth() + 1).toString().padStart(2, "0"); // months are 0-indexed
+  const day = today.getDate().toString().padStart(2, "0");
+  const maxDate = `${year}-${month}-${day}`;
+  return maxDate;
 }
 
 export default function Form(props: {
@@ -21,6 +24,7 @@ export default function Form(props: {
     <form
       onSubmit={async (e) => {
         e.preventDefault();
+        const form = e.currentTarget;
         let student: Student = {
           name: e.currentTarget.sname.value,
           email: e.currentTarget.email.value,
@@ -42,7 +46,7 @@ export default function Form(props: {
         } catch (error) {
           alert("Registration failed: " + error.message);
         }
-        e.currentTarget.reset();
+        form.reset();
       }}
       class="bg-[#faf7eb] w-1/2 mx-auto p-12 mt-32 flex flex-col gap-6 rounded-lg shadow-lg relative"
     >
@@ -107,7 +111,6 @@ export default function Form(props: {
             name="batch"
             class="p-2 border border-gray-300 bg-white rounded"
             onChange={(e) => {
-              console.log("Selected batch:", e.currentTarget.value);
               props.setBatch(e.currentTarget.value as "b1" | "b2");
             }}
             required
