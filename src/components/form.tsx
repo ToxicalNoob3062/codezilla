@@ -4,18 +4,16 @@ import Transfer from "./transfer";
 import { insertStudent, Student } from "../handlers/addStudent";
 
 function getMaxDate() {
-  const today = new Date();
-  const year = today.getFullYear() - 15;
-  const month = (today.getMonth() + 1).toString().padStart(2, "0"); // months are 0-indexed
-  const day = today.getDate().toString().padStart(2, "0");
-  const maxDate = `${year}-${month}-${day}`;
-  return maxDate;
+  const date = new Date();
+  const year = date.getFullYear() - 15;
+  return `${year}-12-31`;
 }
 
 export default function Form(props: {
   module: "m1" | "m2";
   setBatch: Setter<"b1" | "b2">;
   isFull: () => boolean;
+  setReservedSpots: Setter<number>;
 }) {
   let eref_input: HTMLInputElement;
   let [transaction, setTransaction] = createSignal<Transaction | null>(null);
@@ -29,20 +27,22 @@ export default function Form(props: {
           dob: e.currentTarget.dob.value,
           parent_name: e.currentTarget.parent_name.value,
           phone: e.currentTarget.phone.value,
-          batch: e.currentTarget.batch.value === "batch1" ? "b1" : "b2",
+          batch: e.currentTarget.batch.value,
           module: props.module,
-          eref_number: transaction()?.reference_number || "",
-          amount:
-            Math.round(
-              parseFloat(transaction()?.amount.replace(/[^0-9.-]+/g, "")),
-            ) || 0,
+          eref_number: transaction().reference_number,
+          amount: Math.round(
+            parseFloat(transaction().amount.replace(/[^0-9.-]+/g, "")),
+          ),
         };
         try {
           const id = await insertStudent(student, transaction().mail_id);
+          props.setReservedSpots((prev) => prev + 1);
+          setTransaction(null);
           alert("Registration successful! Registration ID: " + id);
         } catch (error) {
           alert("Registration failed: " + error.message);
         }
+        e.currentTarget.reset();
       }}
       class="bg-[#faf7eb] w-1/2 mx-auto p-12 mt-32 flex flex-col gap-6 rounded-lg shadow-lg relative"
     >
@@ -106,9 +106,10 @@ export default function Form(props: {
           <select
             name="batch"
             class="p-2 border border-gray-300 bg-white rounded"
-            onChange={(e) =>
-              props.setBatch(e.currentTarget.value as "b1" | "b2")
-            }
+            onChange={(e) => {
+              console.log("Selected batch:", e.currentTarget.value);
+              props.setBatch(e.currentTarget.value as "b1" | "b2");
+            }}
             required
           >
             <option value="b1">Batch 1</option>

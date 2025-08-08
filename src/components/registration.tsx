@@ -8,12 +8,10 @@ export default function Registration() {
   let [batch, setBatch] = createSignal<"b1" | "b2">("b1");
   let price = () => (module() === "m1" ? 195 : 595);
   let [reservedSpots, setReservedSpots] = createSignal<number>(0);
-
   effect(async () => {
     const count = await getSeatCount(module(), batch());
     setReservedSpots(count);
   });
-
   return (
     <section
       id="registration"
@@ -33,6 +31,7 @@ export default function Registration() {
         module={module()}
         setBatch={setBatch}
         isFull={() => reservedSpots() >= 25}
+        setReservedSpots={setReservedSpots}
       />
       <div>
         <ProgressBar progress={reservedSpots} />
