@@ -107,7 +107,6 @@ def move_from_inbox(mail_id, destination)-> bool:
         mail.store(mail_id, '+FLAGS', '\\Deleted')
         mail.expunge()
         mail.logout()
-        print(f"Email {mail_id} moved to {destination}.")
         return True
     else:
         mail.logout()
