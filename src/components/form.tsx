@@ -15,10 +15,10 @@ function getMaxDate() {
 export default function Form(props: {
   module: "m1" | "m2";
   setBatch: Setter<"b1" | "b2">;
+  isFull: () => boolean;
 }) {
   let eref_input: HTMLInputElement;
   let [transaction, setTransaction] = createSignal<Transaction | null>(null);
-
   return (
     <form
       onSubmit={async (e) => {
@@ -37,8 +37,12 @@ export default function Form(props: {
               parseFloat(transaction()?.amount.replace(/[^0-9.-]+/g, "")),
             ) || 0,
         };
-        const id = await insertStudent(student, transaction().mail_id);
-        console.log("Inserted student with ID:", id);
+        try {
+          const id = await insertStudent(student, transaction().mail_id);
+          alert("Registration successful! Registration ID: " + id);
+        } catch (error) {
+          alert("Registration failed: " + error.message);
+        }
       }}
       class="bg-[#faf7eb] w-1/2 mx-auto p-12 mt-32 flex flex-col gap-6 rounded-lg shadow-lg relative"
     >
@@ -114,34 +118,50 @@ export default function Form(props: {
       </div>
       {/* external reference number of e-transfer */}
       <div class="flex justify-start items-center gap-4 mx-auto">
-        <div class="flex flex-col gap-4 mb-6">
-          <label class="text-2xl text-[#052f3c]">
-            E-Transfer Reference Number:
-          </label>
-          <input
-            name="eref_number"
-            ref={eref_input}
-            placeholder="C1ArUTzJwR5v"
-            type="text"
-            class="p-2 border border-gray-300 bg-white rounded"
-            required
-          />
-        </div>
-        <button
-          onClick={async (e) => {
-            e.preventDefault();
-            if (eref_input.value.trim() === "") {
-              console.log("E-Transfer Reference Number is required");
-              return;
-            }
-            const tx = await verifyTransaction(eref_input.value.trim());
-            setTransaction(tx);
-          }}
-          type="button"
-          class="w-fit py-2 px-4 text-2xl bg-[#1d848f] text-white rounded mt-6 cursor-pointer hover:scale-105"
+        <Show
+          when={props.isFull()}
+          fallback={
+            <>
+              <div class="flex flex-col gap-4 mb-6">
+                <label class="text-2xl text-[#052f3c]">
+                  E-Transfer Reference Number:
+                </label>
+                <input
+                  name="eref_number"
+                  ref={eref_input}
+                  placeholder="C1ArUTzJwR5v"
+                  type="text"
+                  class="p-2 border border-gray-300 bg-white rounded"
+                  required
+                />
+              </div>
+              <button
+                onClick={async (e) => {
+                  e.preventDefault();
+                  if (eref_input.value.trim() === "") {
+                    alert("E-Transfer Reference Number is required");
+                    return;
+                  }
+                  const tx = await verifyTransaction(eref_input.value.trim());
+                  if (!tx) {
+                    setTransaction(null);
+                    alert(
+                      "Sorry, We did not find your payment or the reference number has been re-used. But nothing to worry! Please contact at rahat3515@zynclo.com, (reply within 30 mins).",
+                    );
+                    return;
+                  }
+                  setTransaction(tx);
+                }}
+                type="button"
+                class="w-fit py-2 px-4 text-2xl bg-[#1d848f] text-white rounded mt-6 cursor-pointer hover:scale-105"
+              >
+                Verify
+              </button>
+            </>
+          }
         >
-          Verify
-        </button>
+          <span class="text-red-500 text-3xl">Registration is full 😭</span>
+        </Show>
       </div>
       <div>
         <Transfer transaction={transaction()} />

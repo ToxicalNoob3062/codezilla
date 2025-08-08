@@ -29,7 +29,11 @@ export default function Registration() {
         <span class="text-3xl text-[#1d848f] mx-2">rahat3515@zynclo.com</span>{" "}
         and then fill the form after successful payment.
       </h4>
-      <Form module={module()} setBatch={setBatch} />
+      <Form
+        module={module()}
+        setBatch={setBatch}
+        isFull={() => reservedSpots() >= 25}
+      />
       <div>
         <ProgressBar progress={reservedSpots} />
         <div class="flex justify-center w-fit my-6 mx-auto rounded-lg shadow-lg overflow-hidden">

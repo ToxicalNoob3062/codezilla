@@ -22,15 +22,12 @@ export async function insertStudent(
     },
     body: JSON.stringify(student),
   });
-
   if (!response.ok) {
     const errorBody = await response.json().catch(() => ({}));
     const errorMessage = errorBody.detail || response.statusText;
     throw new Error(`Failed to insert student: ${errorMessage}`);
   }
-
   const data = await response.json();
-
   if (!data.id) {
     throw new Error("Insert response missing new student ID");
   }
