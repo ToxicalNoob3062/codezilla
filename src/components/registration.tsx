@@ -17,11 +17,11 @@ export default function Registration() {
       id="registration"
       class="bg-gradient-to-br from-green-300 via-green-400 to-green-500 rounded-bl-4xl rounded-br-4xl flex flex-col gap-16"
     >
-      <h2 class="text-5xl text-[#052f3c] text-center mt-10">Registration</h2>
-      <h4 class="text-2xl text-[#faf7eb] text-center">
+      <h2 class="text-4xl lg:text-5xl text-[#052f3c] text-center mt-10">Registration</h2>
+      <h4 class="text-xl lg:text-2xl w-[90%] lg:w-1/2 text-[#faf7eb] mx-auto text-center">
         Please E-Transfer{" "}
         <span class="text-4xl text-yellow-200 mx-2">
-          {price()} CAD (early bird)
+          {price()} CAD (eb)
         </span>{" "}
         to{" "}
         <span class="text-3xl text-[#1d848f] mx-2">rahat3515@zynclo.com</span>{" "}

@@ -3,7 +3,7 @@ import { For } from "solid-js";
 export default function ProgressBar(props: { progress: () => number }) {
   const totalSlots = 25;
   return (
-    <div class="w-1/2 mx-auto text-center">
+    <div class="w-[80%] lg:w-1/2 mx-auto text-center">
       {/* Progress Bar */}
       <div class="h-4 rounded-full overflow-hidden flex">
         <For each={Array.from({ length: totalSlots })}>

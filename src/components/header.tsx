@@ -21,20 +21,20 @@ export default function Header() {
   });
   return (
     <section class="block bg-gradient-to-br from-green-300 via-green-400 to-green-500 rounded-tl-4xl rounded-tr-4xl">
-      <div class="flex justify-between items-center max-w-screen-2xl mx-auto px-4 py-8">
-        <div id="logo-container" class="relative w-1/2 mx-auto">
+      <div class="flex flex-col lg:flex-row justify-between items-center max-w-full lg:max-w-screen-2xl mx-auto px-4 py-8">
+        <div id="logo-container" class="relative w-full md:w-[70%] lg:w-1/2 mx-auto">
           <div
             id="glow-bg"
             class="absolute -inset-5 bg-gradient-to-br from-green-300 via-yellow-200 to-pink-300 rounded-full blur-3xl opacity-60 z-0 transition-transform duration-200 eas"
           ></div>
           <img src="./Blogo.png" alt="Logo" class="relative z-10 w-full" />
         </div>
-        <div class="w-1/2 flex flex-col gap-3">
-          <h1 class="text-7xl text-[#052f3c]">Web Development Bootcamp</h1>
-          <h3 class="text-4xl text-[#1d848f]">
+        <div class="w-full text-center -mt-16 md:-mt-24 lg:-mt-0 lg:text-left lg:w-1/2 flex flex-col gap-3">
+          <h1 class="text-5xl md:text-6xl lg:text-7xl text-[#052f3c]">Web Development Bootcamp</h1>
+          <h3 class="text-2xl md:text-3xl lg:text-4xl text-[#1d848f]">
             Fall 2025 | Live & Online | Ages 15+
           </h3>
-          <p class="text-2xl text-[#faf7eb]">
+          <p class="text-xl lg:text-2xl text-[#faf7eb]">
             Camp-Codezilla is a cutting-edge, beginner-focused web development
             bootcamp dedicated to equipping students with the skills needed to
             thrive in the fast-paced world of technology. Designed for absolute
@@ -43,17 +43,17 @@ export default function Header() {
             build and deploy production-ready web applications using today’s top
             frameworks and tools.
           </p>
-          <div class="flex gap-6">
+          <div class="flex gap-6 mx-auto lg:mx-0">
             <a
               href="#registration"
-              class="w-fit py-2 px-4 text-2xl bg-[#1d848f] text-white rounded mt-6 cursor-pointer hover:scale-105"
+              class="w-fit py-2 px-4 text-xl lg:text-2xl bg-[#1d848f] text-white rounded mt-6 cursor-pointer hover:scale-105"
             >
               Register Now
             </a>
             <a
               href="http://localhost:8000/pdf"
               download="file.pdf"
-              class="w-fit py-2 px-4 text-2xl bg-[#1d848f] text-white rounded mt-6 cursor-pointer hover:scale-105 inline-block text-center"
+              class="w-fit py-2 px-4 text-xl lg:text-2xl bg-[#1d848f] text-white rounded mt-6 cursor-pointer hover:scale-105 inline-block text-center"
             >
               Download Details
             </a>

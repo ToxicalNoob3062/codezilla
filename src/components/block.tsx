@@ -6,9 +6,9 @@ export default function Block(props: {
 }) {
   return (
     <div
-      class={`flex ${props.img_direction === "left" ? "flex-row" : "flex-row-reverse"} items-center h-96 gap-4 px-6`}
+  class={`flex flex-col ${props.img_direction === "left" ? "lg:flex-row" : "lg:flex-row-reverse"} items-center lg:h-96 gap-4 px-6`}
     >
-      <div class="relative h-full w-1/3 mx-auto bg-gradient-to-br from-green-300 via-green-400 to-green-500 shadow-lg rounded-lg">
+      <div class="relative w-auto sm:h-72 h-80 lg:h-full lg:w-1/3 mx-auto bg-gradient-to-br from-green-300 via-green-400 to-green-500 shadow-lg rounded-lg">
         <div class="relative w-full h-full mt-6">
           <div class="absolute inset-0 bg-gradient-to-br from-green-300 via-yellow-200 to-pink-300 rounded-2xl blur-2xl opacity-60 z-0"></div>
           <img
@@ -18,9 +18,9 @@ export default function Block(props: {
           />
         </div>
       </div>
-      <div class="w-1/2 p-4">
-        <h2 class="text-4xl mb-6 text-[#1d848f]">{props.title}</h2>
-        <p class="text-[#545454] text-2xl">{props.description}</p>
+      <div class="w-full md:w-[80%] lg:w-1/2 p-4 text-center lg:text-left">
+        <h2 class="text-3xl lg:text-4xl mb-6 text-[#1d848f]">{props.title}</h2>
+        <p class="text-[#545454] text-xl lg:text-2xl">{props.description}</p>
       </div>
     </div>
   );

@@ -48,10 +48,10 @@ export default function Form(props: {
         }
         form.reset();
       }}
-      class="bg-[#faf7eb] w-1/2 mx-auto p-12 mt-32 flex flex-col gap-6 rounded-lg shadow-lg relative"
+      class="bg-[#faf7eb] w-[95%] sm:w-[80%] lg:w-fit mx-auto p-8 lg:p-12 mt-32 flex flex-col gap-3 lg:gap-6 rounded-lg shadow-lg relative"
     >
       {/* students name , date of birth and email */}
-      <div class="flex justify-start items-center gap-2">
+      <div class="flex flex-col lg:flex-row justify-start lg:items-center mx-auto lg:mx-0 gap-2">
         <div class="w-60 flex flex-col gap-4 mb-6">
           <label class="text-2xl text-[#052f3c]">Name:</label>
           <input
@@ -72,7 +72,7 @@ export default function Form(props: {
             required
           />
         </div>
-        <div class="flex flex-col gap-4 mb-6">
+        <div class="w-40 flex flex-col gap-4 mb-6">
           <label class="text-2xl text-[#052f3c]">Date of Birth:</label>
           <input
             name="dob"
@@ -84,7 +84,7 @@ export default function Form(props: {
         </div>
       </div>
       {/* parent/guardian name and phone number */}
-      <div class="flex justify-start items-center gap-2">
+      <div class="flex flex-col lg:flex-row justify-start lg:items-center mx-auto lg:mx-0 gap-2">
         <div class="w-60 flex flex-col gap-4 mb-6">
           <label class="text-2xl text-[#052f3c]">Parent Name:</label>
           <input
@@ -121,19 +121,19 @@ export default function Form(props: {
         </div>
       </div>
       {/* external reference number of e-transfer */}
-      <div class="flex justify-start items-center gap-4 mx-auto">
+      <div class="flex flex-col lg:flex-row justify-start lg:items-center gap-2 lg:gap-4 mx-auto">
         <Show
           when={props.isFull()}
           fallback={
             <>
-              <div class="flex flex-col gap-4 mb-6">
+              <div class="w-60 flex flex-col gap-4 mb-6">
                 <label class="text-2xl text-[#052f3c]">
-                  E-Transfer Reference Number:
+                  Reference Number:
                 </label>
                 <input
                   name="eref_number"
                   ref={eref_input}
-                  placeholder="C1ArUTzJwR5v"
+                  placeholder="e-transfer ref number"
                   type="text"
                   class="p-2 border border-gray-300 bg-white rounded"
                   required
@@ -157,7 +157,7 @@ export default function Form(props: {
                   setTransaction(tx);
                 }}
                 type="button"
-                class="w-fit py-2 px-4 text-2xl bg-[#1d848f] text-white rounded mt-6 cursor-pointer hover:scale-105"
+                class="w-fit mx-auto lg:mx-0 py-2 px-4 text-2xl bg-[#1d848f] text-white rounded mt-2 lg:mt-6 cursor-pointer hover:scale-105"
               >
                 Verify
               </button>

@@ -3,7 +3,7 @@ import Block from "./block";
 export default function Features() {
   return (
     <section>
-      <h2 class="text-5xl text-[#052f3c] text-center mb-16">
+      <h2 class="text-4xl lg:text-5xl text-[#052f3c] text-center mb-16">
         Why Choose Camp-Codezilla?
       </h2>
       <div class="flex flex-col gap-6">

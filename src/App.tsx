@@ -5,7 +5,7 @@ import Registration from "./components/registration";
 
 const App: Component = () => {
   return (
-    <div class="max-w-screen-2xl mx-auto p-4 font-lilita bg-[#faf7eb] flex flex-col gap-10">
+    <div class="max-w-screen-2xl mx-auto p-2 lg:p-4 font-lilita bg-[#faf7eb] flex flex-col gap-10">
       <Header />
       <Features />
       <Registration />
