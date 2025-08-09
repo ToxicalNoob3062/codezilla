@@ -14,13 +14,13 @@ export default function Transfer(props: { transaction?: Transaction }) {
               <span class="text-[#1d848f] ml-2">{props.transaction.date}</span>
             </p>
             <p>
-              Reference Number:{" "}
+              Ref-No:{" "}
               <span class="text-[#1d848f] ml-2">
                 {props.transaction.reference_number}
               </span>
             </p>
             <p>
-              Sent From:{" "}
+              From:{" "}
               <span class="text-[#1d848f] ml-2">
                 {props.transaction.sent_from}
               </span>
