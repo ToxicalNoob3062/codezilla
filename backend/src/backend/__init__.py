@@ -1,4 +1,6 @@
 # src/backend/__init__.py
+import asyncpg
+from fastapi.concurrency import asynccontextmanager
 from .etransfer import get_all_transactions, move_from_inbox
 from .db import count_students_by_module_batch, insert_student, Student
 from fastapi import FastAPI, Query ,Response,status,HTTPException
@@ -10,7 +12,9 @@ from datetime import date
 from typing import Annotated
 from pydantic.types import StringConstraints
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 class StudentIn(BaseModel):
     name: Annotated[str, StringConstraints(min_length=1, max_length=255)]
@@ -47,7 +51,20 @@ class StudentIn(BaseModel):
         return v
 
 
-app = FastAPI()
+pool = None
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    global pool
+    db_url = os.getenv("DB_URL")
+    if not db_url:
+        raise RuntimeError("DB_URL environment variable is missing!")
+    print(f"Connecting to database...")
+    pool = await asyncpg.create_pool(dsn=db_url)
+    yield
+    await pool.close()
+
+app = FastAPI(lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -75,7 +92,7 @@ def verify_transaction(reference_number: str, response: Response):
 @app.post("/students/{mailId}")
 async def create_student(mailId: str, student_in: StudentIn):
     student = Student(**student_in.model_dump())
-    new_id = await insert_student(student)
+    new_id = await insert_student(pool, student)
     if new_id is None:
         raise HTTPException(status_code=500, detail="Failed to insert student")
     move_from_inbox(mailId,"Camp-Codezilla")
@@ -92,7 +109,7 @@ async def get_slots(
     module: str = Query(..., description="Module ID, e.g. 'm1'"),
     batch: str = Query(..., description="Batch ID, e.g. 'b1'"),
 ):
-    count = await count_students_by_module_batch(module, batch)
+    count = await count_students_by_module_batch(pool,module, batch)
     if count is None:
         raise HTTPException(status_code=500, detail="Failed to count students")
     return {"count": count}

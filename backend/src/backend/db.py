@@ -1,13 +1,6 @@
 from dataclasses import dataclass
 from datetime import date
-import os
 from typing import Optional
-from dotenv import load_dotenv
-import asyncpg
-
-load_dotenv()
-
-DB_URL = os.getenv("DB_URL")
 
 @dataclass
 class Student:
@@ -22,16 +15,8 @@ class Student:
     amount: int  # 0-999
 
 
-pool = None
-
-async def init_db_pool():
-    global pool
-    if pool is None:
-        pool = await asyncpg.create_pool(DB_URL)
-
 # add student
-async def insert_student(student: Student) -> Optional[int]:
-    await init_db_pool()
+async def insert_student(pool, student: Student) -> Optional[int]:
     try:
         async with pool.acquire() as conn: # type: ignore
             query = """
@@ -57,8 +42,7 @@ async def insert_student(student: Student) -> Optional[int]:
         return None
 
 # slots
-async def count_students_by_module_batch(module_id: str, batch_id: str) -> Optional[int]:
-    await init_db_pool()
+async def count_students_by_module_batch(pool, module_id: str, batch_id: str) -> Optional[int]:
     try:
         async with pool.acquire() as conn:  # type: ignore
             query = """
