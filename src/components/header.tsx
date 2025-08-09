@@ -50,14 +50,14 @@ export default function Header() {
               href="#registration"
               class="w-fit py-2 px-4 text-xl lg:text-2xl bg-[#1d848f] text-white rounded mt-6 cursor-pointer hover:scale-105"
             >
-              Register Now
+              Register <span class="hidden lg:inline">Now</span>
             </a>
             <a
               href="http://localhost:8000/pdf"
               download="file.pdf"
               class="w-fit py-2 px-4 text-xl lg:text-2xl bg-[#1d848f] text-white rounded mt-6 cursor-pointer hover:scale-105 inline-block text-center"
             >
-              Download Details
+              Program <span class="hidden lg:inline">Details</span>
             </a>
           </div>
         </div>
