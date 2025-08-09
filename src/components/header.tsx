@@ -37,11 +37,13 @@ export default function Header() {
           <p class="text-xl lg:text-2xl text-[#faf7eb]">
             Camp-Codezilla is a cutting-edge, beginner-focused web development
             bootcamp dedicated to equipping students with the skills needed to
-            thrive in the fast-paced world of technology. Designed for absolute
-            beginners, this program blends a modern curriculum with hands-on
-            project work and individualized support, enabling participants to
-            build and deploy production-ready web applications using today’s top
-            frameworks and tools.
+            thrive in the fast-paced world of technology. <span class="hidden lg:inline">
+              Designed for absolute
+              beginners, this program blends a modern curriculum with hands-on
+              project work and individualized support, enabling participants to
+              build and deploy production-ready web applications using today’s top
+              frameworks and tools.
+            </span>
           </p>
           <div class="flex gap-6 mx-auto lg:mx-0">
             <a
