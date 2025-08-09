@@ -1,4 +1,5 @@
 import { onMount } from "solid-js";
+import { API_BASE_URL } from "../handlers/base";
 
 export default function Header() {
   onMount(() => {
@@ -53,7 +54,7 @@ export default function Header() {
               Register <span class="hidden lg:inline">Now</span>
             </a>
             <a
-              href="http://localhost:8000/pdf"
+              href={`${API_BASE_URL}/pdf`}
               download="file.pdf"
               class="w-fit py-2 px-4 text-xl lg:text-2xl bg-[#1d848f] text-white rounded mt-6 cursor-pointer hover:scale-105 inline-block text-center"
             >

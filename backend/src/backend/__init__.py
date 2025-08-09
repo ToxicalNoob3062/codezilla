@@ -27,15 +27,6 @@ class StudentIn(BaseModel):
     eref_number: Annotated[str, StringConstraints(min_length=1, max_length=15)]
     amount: int
 
-    @field_validator('dob')
-    @classmethod
-    def validate_age(cls, v: date) -> date:
-        today = date.today()
-        age = today.year - v.year - ((today.month, today.day) < (v.month, v.day))
-        if age < 13:
-            raise ValueError('Student must be at least 13 years old')
-        return v
-
     @field_validator('batch')
     @classmethod
     def validate_batch(cls, v: str) -> str:
