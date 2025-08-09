@@ -21,7 +21,7 @@ export default function Registration() {
       <h4 class="text-xl lg:text-2xl w-[90%] lg:w-1/2 text-[#faf7eb] mx-auto text-center">
         Please E-Transfer{" "}
         <span class="text-4xl text-yellow-200 mx-2">
-          {price()} CAD (eb)
+          ${price()}CAD
         </span>{" "}
         to{" "}
         <span class="text-3xl text-[#1d848f] mx-2">rahat3515@zynclo.com</span>{" "}

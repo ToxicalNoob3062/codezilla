@@ -18,9 +18,9 @@ export default function Block(props: {
           />
         </div>
       </div>
-      <div class="w-full md:w-[80%] lg:w-1/2 p-0 lg:p-4 text-left">
+      <div class="w-full md:w-[80%] mt-4 lg:w-1/2 p-0 lg:p-4 text-left">
         <h2 class="text-3xl lg:text-4xl mb-6 text-[#1d848f] text-center lg:text-left">{props.title}</h2>
-        <p class="text-[#545454] text-justify text-xl lg:text-2xl mx-auto">{props.description}</p>
+        <p class="text-[#545454] text-justify lg:text-left text-lg sm:text-xl lg:text-2xl mx-auto ">{props.description}</p>
       </div>
     </div>
   );

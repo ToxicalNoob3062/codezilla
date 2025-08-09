@@ -15,7 +15,7 @@ export default function Features() {
         />
         <Block
           img="./care.png"
-          title="Compact Private Tutoring"
+          title="Private Tutoring"
           description="At Camp-Codezilla, every child matters. That’s why we keep our batches small—just 25 students per group—to ensure personalized guidance, meaningful interaction, and focused support in every session. With two flexible batch timings, your child can learn at their own pace, ask questions freely, and receive the individual attention they truly deserve."
           img_direction="right"
         />
