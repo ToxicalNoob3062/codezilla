@@ -7,7 +7,7 @@ export default function Transfer(props: { transaction?: Transaction }) {
     <Show when={props.transaction !== null}>
       <div class="text-[#052f3c] mx-auto p-2 lg:p-4">
         <h2 class="text-center text-2xl mb-2">Transaction Details</h2>
-        <div class="text-xl w-fit p-2 p-4 gap-6 mx-auto border-2 border-[#052f3c] rounded-lg">
+        <div class="text-xl w-fit p-4 gap-6 mx-auto border-2 border-[#052f3c] rounded-lg">
           <div class="flex flex-col gap-6 mx-auto">
             <p>
               Date:{" "}
