@@ -4,10 +4,12 @@ from .db import count_students_by_module_batch, insert_student, Student
 from fastapi import FastAPI, Query ,Response,status,HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, field_validator
 from datetime import date
 from typing import Annotated
 from pydantic.types import StringConstraints
+import os
 
 
 class StudentIn(BaseModel):
@@ -54,7 +56,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
+
+@app.get("/health")
 async def root():
     return {"message": "healthy"}
 
@@ -93,3 +96,7 @@ async def get_slots(
     if count is None:
         raise HTTPException(status_code=500, detail="Failed to count students")
     return {"count": count}
+
+dist_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "dist"))
+
+app.mount("/", StaticFiles(directory=dist_path, html=True), name="static")

@@ -1,3 +1,5 @@
+import { API_BASE_URL } from "./base";
+
 export type Student = {
   name: string; // max 255 chars expected
   email: string; // max 255 chars expected
@@ -10,12 +12,12 @@ export type Student = {
   amount: number; // integer between 0 and 999
 };
 
-const apiUrl = "http://localhost:8000";
+
 export async function insertStudent(
   student: Student,
   mailId: string,
 ): Promise<number> {
-  const response = await fetch(`${apiUrl}/students/${mailId}`, {
+  const response = await fetch(`${API_BASE_URL}/students/${mailId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -5,12 +5,14 @@ import { insertStudent, Student } from "../handlers/addStudent";
 
 function getMaxDate() {
   const today = new Date();
-  const year = today.getFullYear() - 15;
-  const month = (today.getMonth() + 1).toString().padStart(2, "0"); // months are 0-indexed
-  const day = today.getDate().toString().padStart(2, "0");
-  const maxDate = `${year}-${month}-${day}`;
+  const year = today.getFullYear() - 17;
+  // December is month 11 in 0-indexed month system
+  const month = 11;
+  const day = 31;
+  const maxDate = `${year}-${(month + 1).toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`;
   return maxDate;
 }
+
 
 export default function Form(props: {
   module: "m1" | "m2";
