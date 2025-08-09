@@ -5,7 +5,7 @@ import { insertStudent, Student } from "../handlers/addStudent";
 
 function getMaxDate() {
   const today = new Date();
-  const year = today.getFullYear() - 17;
+  const year = today.getFullYear() - 13;
   // December is month 11 in 0-indexed month system
   const month = 11;
   const day = 31;

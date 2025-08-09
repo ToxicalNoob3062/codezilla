@@ -32,8 +32,8 @@ class StudentIn(BaseModel):
     def validate_age(cls, v: date) -> date:
         today = date.today()
         age = today.year - v.year - ((today.month, today.day) < (v.month, v.day))
-        if age < 15:
-            raise ValueError('Student must be at least 15 years old')
+        if age < 13:
+            raise ValueError('Student must be at least 13 years old')
         return v
 
     @field_validator('batch')
