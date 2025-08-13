@@ -18,7 +18,7 @@ export default function Registration() {
       class="bg-gradient-to-br from-green-300 via-green-400 to-green-500 rounded-bl-4xl rounded-br-4xl flex flex-col gap-16"
     >
       <h2 class="text-4xl lg:text-5xl text-[#052f3c] text-center mt-10">Registration</h2>
-      <h4 class="text-lg sm:text-xl lg:text-2xl w-full sm:w-[90%] lg:w-1/2 text-[#faf7eb] mx-auto text-center bg-red-300">
+      <h4 class="text-lg sm:text-xl lg:text-2xl w-full sm:w-[90%] lg:w-1/2 text-[#faf7eb] mx-auto text-center">
         Please E-Transfer{" "}
         <span class="text-4xl text-yellow-200 mx-2">
           ${price()}CAD
