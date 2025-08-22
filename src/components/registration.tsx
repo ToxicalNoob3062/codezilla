@@ -18,21 +18,34 @@ export default function Registration() {
       class="bg-gradient-to-br from-green-300 via-green-400 to-green-500 rounded-bl-4xl rounded-br-4xl flex flex-col gap-16"
     >
       <h2 class="text-4xl lg:text-5xl text-[#052f3c] text-center mt-10">Registration</h2>
-      <h4 class="text-lg sm:text-xl lg:text-2xl w-full sm:w-[90%] lg:w-1/2 text-[#faf7eb] mx-auto text-center">
+      {/* <h4 class="text-lg sm:text-xl lg:text-2xl w-full sm:w-[90%] lg:w-1/2 text-[#faf7eb] mx-auto text-center">
         Please E-Transfer{" "}
         <span class="text-4xl text-yellow-200 mx-2">
           ${price()}CAD
         </span>{" "}
         to{" "}
-        <span class="text-2xl lg:text-3xl text-[#1d848f] mx-2">rahat3515@zynclo.com</span>{" "}
+        <span class="text-2xl lg:text-3xl text-[#1d848f] mx-2">rahat3062@gmail.com</span>{" "}
         and then fill the form after successful payment.
-      </h4>
-      <Form
+      </h4> */}
+      {/* <Form
         module={module()}
         setBatch={setBatch}
         isFull={() => reservedSpots() >= 25}
         setReservedSpots={setReservedSpots}
-      />
+      /> */}
+      <h4 class="text-lg sm:text-xl lg:text-2xl w-full sm:w-[90%] lg:w-1/2 text-[#faf7eb] mx-auto text-center">
+        Module Price:
+        <span class="text-4xl text-yellow-200 mx-2">
+          ${price()}CAD
+        </span>{" "}
+      </h4>
+      <h4 class="text-lg sm:text-xl lg:text-2xl w-full sm:w-[90%] lg:w-1/2 text-[#faf7eb] mx-auto text-center">
+        RBC Bank has suddenly gone into maintance mode for e-transfer. Please mail us at <span class="text-4xl text-yellow-200 mx-2">
+          rahat3515@zynclo.com
+        </span>{" "} for booking your spot!
+      </h4>
+      <div>
+      </div>
       <div>
         <ProgressBar progress={reservedSpots} />
         <div class="flex justify-center w-fit my-6 mx-auto rounded-lg shadow-lg overflow-hidden">
